@@ -1,16 +1,13 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float maxSpeed = 5f;
-    [SerializeField] float acceleration = 8f;
-    [SerializeField] float deceleration = 10f;
-    [SerializeField] float turnSpeed = 1f;
+    [SerializeField] SpermStatsData playerStats;
     [SerializeField] float angleOffset = 90f;
 
     Camera mainCamera;
+    SpermStats spermStats;
+
     Quaternion targetRotation;
     float currentSpeed;
 
@@ -19,20 +16,29 @@ public class PlayerController : MonoBehaviour
     {
         mainCamera = Camera.main;
         targetRotation = transform.rotation;
+
+        // default stats without any micro-implants
+        playerStats = new SpermStatsData
+        {
+            MaxSpeed = 5f,
+            Acceleration = 8f,
+            Deceleration = 10f,
+            TurnSpeed = 1f
+        };
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        spermStats = GetComponent<SpermStats>();
+        playerStats = spermStats.GetPlayerStats();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        bool mouseDown = Input.GetMouseButton(0);
+        bool leftMouseButtonPressed = Input.GetMouseButton(0);
+        // bool rightMouseButtonPress = Input.GetMouseButtonDown(1); // TODO: add damageable punch
 
-        if (mouseDown)
+        if (leftMouseButtonPressed)
         {
             Vector3 mouseScreenPos = Input.mousePosition;
             mouseScreenPos.z = -mainCamera.transform.position.z;
@@ -44,15 +50,20 @@ public class PlayerController : MonoBehaviour
             targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
         }
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, playerStats.TurnSpeed * Time.deltaTime);
 
-        float targetSpeed = mouseDown ? maxSpeed : 0f;
-        float rate = mouseDown ? acceleration : deceleration;
+        float targetSpeed = leftMouseButtonPressed ? playerStats.MaxSpeed : 0f;
+        float rate = leftMouseButtonPressed ? playerStats.Acceleration : playerStats.Deceleration;
         currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, rate * Time.deltaTime);
 
         if (currentSpeed > 0.001f)
         {
             transform.position += transform.up * (currentSpeed * Time.deltaTime);
         }
+    }
+
+    public void UpdatePlayerStats(SpermStatsData newStats)
+    {
+        playerStats = newStats;
     }
 }

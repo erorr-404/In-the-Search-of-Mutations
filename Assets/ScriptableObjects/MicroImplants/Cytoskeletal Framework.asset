@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5730bd4ddb27a17358c6fc0d5796044a, type: 3}
+  m_Name: Cytoskeletal Framework
+  m_EditorClassIdentifier: 
+  Name: Cytoskeletal Framework
+  Description: 'Activates Spikes: deals passive contact damage to enemies who attempt
+    to attack you from behind or from the sides.'
+  Icon: {fileID: 0}
+  MaxSpeed: 0.9
+  Acceleration: 0.9
+  Deceleration: 0.9
+  TurnSpeed: 0.9
+  Health: 1.6
+  Size: 1.2
+  AttackDamage: 1.1
+  DamageResistance: 1.1
+  Spikes: 1
+  ToxicTrail: 0
+  RGBLight: 0
+  Gun: 0

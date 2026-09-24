@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5730bd4ddb27a17358c6fc0d5796044a, type: 3}
+  m_Name: Membrane Shock Absorber
+  m_EditorClassIdentifier: 
+  Name: Membrane Shock Absorber
+  Description: Absorbs the impact of enemy blows, preventing them from knocking you
+    back too far during ramming attacks.
+  Icon: {fileID: 0}
+  MaxSpeed: 1
+  Acceleration: 1
+  Deceleration: 1.3
+  TurnSpeed: 1
+  Health: 1
+  Size: 1
+  AttackDamage: 1
+  DamageResistance: 1.5
+  Spikes: 0
+  ToxicTrail: 0
+  RGBLight: 0
+  Gun: 0
