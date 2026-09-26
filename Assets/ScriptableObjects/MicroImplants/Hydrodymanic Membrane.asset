@@ -26,6 +26,9 @@ MonoBehaviour:
   Size: 1
   AttackDamage: 1
   DamageResistance: 1
+  HealStartTime: 1
+  HealCooldown: 1
+  HealPerTick: 1
   Spikes: 0
   ToxicTrail: 0
   RGBLight: 0

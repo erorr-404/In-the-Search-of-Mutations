@@ -62,6 +62,16 @@ public class EnemyController : MonoBehaviour
         float minEnemyDist = float.MaxValue;
         float minLootDist = float.MaxValue;
 
+        // shuffling nearbyHits to make decisions less predictable
+        // without it it always attacks player first
+        for (int i = hitCount - 1; i > 0; i--)
+        {
+            int swapIndex = Random.Range(0, i + 1);
+            Collider2D temporary = nearbyHits[i];
+            nearbyHits[i] = nearbyHits[swapIndex];
+            nearbyHits[swapIndex] = temporary;
+        }
+
         for (int i = 0; i < hitCount; i++)
         {
             Collider2D hit = nearbyHits[i];

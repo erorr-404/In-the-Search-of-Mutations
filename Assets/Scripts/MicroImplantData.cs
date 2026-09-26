@@ -23,6 +23,11 @@ public class MicroImplantData : ScriptableObject
     public float AttackDamage = 1f;
     public float DamageResistance = 1f;
 
+    [Header("Healing")]
+    public float HealStartTime;
+    public float HealCooldown;
+    public float HealPerTick;
+
     // flags
     [Header("Special Abilities")]
     public bool Spikes = false;

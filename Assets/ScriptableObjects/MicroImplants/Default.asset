@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: None
   Description: Just pure nature)
   Icon: {fileID: -3206519398373867357, guid: be5b0fe91300a134dbd948c73cdcfbda, type: 3}
-  SpawnProbabilityWeight: 10
+  SpawnProbabilityWeight: 0
   MaxSpeed: 2.5
   Acceleration: 4
   Deceleration: 10
@@ -24,6 +24,9 @@ MonoBehaviour:
   Size: 1
   AttackDamage: 1
   DamageResistance: 1
+  HealStartTime: 10
+  HealCooldown: 3
+  HealPerTick: 1
   Spikes: 0
   ToxicTrail: 0
   RGBLight: 0

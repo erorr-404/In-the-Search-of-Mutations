@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
     private void OnStatsChanged(SpermStatsData newStats)
     {
         playerStats = newStats;
-        transform.localScale = new Vector3(newStats.Size, newStats.Size, newStats.Size);
         playerDamageable.MaxHealth = newStats.Health;
     }
 

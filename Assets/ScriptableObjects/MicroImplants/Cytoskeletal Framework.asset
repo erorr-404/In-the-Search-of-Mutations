@@ -16,15 +16,18 @@ MonoBehaviour:
   Description: 'Activates Spikes: deals passive contact damage to enemies who attempt
     to attack you from behind or from the sides.'
   Icon: {fileID: -1708926282, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
-  SpawnProbabilityWeight: 10
+  SpawnProbabilityWeight: 7.5
   MaxSpeed: 0.9
   Acceleration: 0.9
   Deceleration: 0.9
   TurnSpeed: 0.9
   Health: 1.6
-  Size: 1.2
+  Size: 1.05
   AttackDamage: 1.1
   DamageResistance: 1.1
+  HealStartTime: 1
+  HealCooldown: 1
+  HealPerTick: 1
   Spikes: 1
   ToxicTrail: 0
   RGBLight: 0

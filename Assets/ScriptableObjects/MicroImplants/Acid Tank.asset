@@ -22,9 +22,12 @@ MonoBehaviour:
   Deceleration: 0.9
   TurnSpeed: 0.9
   Health: 1
-  Size: 1.5
+  Size: 1.1
   AttackDamage: 1
   DamageResistance: 1
+  HealStartTime: 1
+  HealCooldown: 1
+  HealPerTick: 1
   Spikes: 0
   ToxicTrail: 1
   RGBLight: 0

@@ -17,6 +17,11 @@ public struct SpermStatsData
     [SerializeField] public float AttackDamage;
     [SerializeField] public float DamageResistance;
 
+    [Header("Healing")]
+    [SerializeField] public float HealStartTime;
+    [SerializeField] public float HealCooldown;
+    [SerializeField] public float HealPerTick;
+
     [SerializeField] public bool HasSpikes;
     [SerializeField] public bool HasToxicTrail;
     [SerializeField] public bool HasRGB;
@@ -31,12 +36,21 @@ public class SpermStats : MonoBehaviour
     [SerializeField] private SpermStatsData _currentStats;
     [SerializeField] private MicroImplantData defaultMicroImplant;
 
+    [SerializeField] private GameObject spikes;
+    [SerializeField] private GameObject acidTank;
+
     public UnityEvent<SpermStatsData> onStatsChanged;
 
     void Awake()
     {
         if (microImplants.Count == 0) microImplants.Add(defaultMicroImplant);
         UpdateStats();
+    }
+
+    void Start()
+    {
+        spikes.SetActive(false);
+        acidTank.SetActive(false);
     }
 
     /// <summary>
@@ -46,6 +60,10 @@ public class SpermStats : MonoBehaviour
     public void AddMicroImplant(MicroImplantData microImplant)
     {
         microImplants.Add(microImplant);
+
+        if (microImplant.Name == "Cytoskeletal Framework") spikes.SetActive(true);
+        if (microImplant.Name == "Acid Tank") acidTank.SetActive(true);
+
         UpdateStats();
     }
 
@@ -100,6 +118,9 @@ public class SpermStats : MonoBehaviour
     {
         SpermStatsData stats = RecalculateMicroImplantEffects();
         _currentStats = stats;
+
+        transform.localScale = new Vector3(stats.Size, stats.Size, stats.Size);
+
         onStatsChanged?.Invoke(stats);
     }
 
@@ -118,6 +139,10 @@ public class SpermStats : MonoBehaviour
         float attack_d = 1f;
         float dam_res = 1f;
 
+        float heal_start = 1f;
+        float heal_cooldown = 1f;
+        float heal_per_tick = 1f;
+
         bool spikes = false;
         bool toxic_trail = false;
         bool rgb = false;
@@ -133,6 +158,10 @@ public class SpermStats : MonoBehaviour
             size *= implant.Size;
             attack_d *= implant.AttackDamage;
             dam_res *= implant.DamageResistance;
+
+            heal_start *= implant.HealStartTime;
+            heal_cooldown *= implant.HealCooldown;
+            heal_per_tick *= implant.HealPerTick;
 
             spikes = spikes || implant.Spikes;
             toxic_trail = toxic_trail || implant.ToxicTrail;
@@ -150,6 +179,11 @@ public class SpermStats : MonoBehaviour
             Size = size,
             AttackDamage = attack_d,
             DamageResistance = dam_res,
+
+            HealStartTime = heal_start,
+            HealCooldown = heal_cooldown,
+            HealPerTick = heal_per_tick,
+
             HasSpikes = spikes,
             HasToxicTrail = toxic_trail,
             HasRGB = rgb,

@@ -7,6 +7,7 @@ public class RamAttacker : MonoBehaviour
     [SerializeField] private float ramAngleThreshold = 0.5f;
     [SerializeField] private float attackCooldown = 0.4f;
     [SerializeField] private float kickbackForce = 5f;
+    [SerializeField] private bool isPlayer = false;
 
     private SpermStats myStats;
     private Damageable myDamageable;
@@ -31,7 +32,7 @@ public class RamAttacker : MonoBehaviour
     private void TryExecuteRam(GameObject target)
     {
         if (Time.time < lastAttackTime + attackCooldown) return;
-        if (!target.TryGetComponent<Damageable>(out Damageable targetDamageable)) return;
+        if (!target.TryGetComponent(out Damageable targetDamageable)) return;
 
         Vector2 myForward = transform.up;
         Vector2 toTarget = ((Vector2)target.transform.position - (Vector2)transform.position).normalized;
@@ -70,14 +71,24 @@ public class RamAttacker : MonoBehaviour
             }
         }
 
-        targetDamageable.ModifyHealth(-baseDamage, HealthModificationReason.RegularAttack);
+        HealthModificationResult healthModificationResult =  targetDamageable.ModifyHealth(-baseDamage, isPlayer ? HealthModificationReason.PlayerAttack : HealthModificationReason.EnemyAttack);
 
         Vector2 pushDir = ((Vector2)targetObject.transform.position - (Vector2)transform.position).normalized;
         ApplyKickback(targetObject, pushDir);
 
         if (targetObject.TryGetComponent<SpermStats>(out var targetSt) && targetSt.GetPlayerStats().HasSpikes)
         {
-            myDamageable.ModifyHealth(-baseDamage * 0.5f, HealthModificationReason.RegularAttack);
+            myDamageable.ModifyHealth(-baseDamage * 0.5f, isPlayer ? HealthModificationReason.PlayerAttack : HealthModificationReason.EnemyAttack);
+        }
+
+        // take micro-implants from died victim
+        if (healthModificationResult.TargetDied)
+        {
+            foreach (MicroImplantData implant in healthModificationResult.RemovedMicroImplants)
+            {
+                if (implant.Name == "None") continue; // this is too overpowered if killed 2 or more, so skip it
+                myStats.AddMicroImplant(implant);
+            }
         }
     }
 
@@ -85,7 +96,7 @@ public class RamAttacker : MonoBehaviour
     {
         if (target.TryGetComponent<Rigidbody2D>(out var rb))
         {
-            rb.AddForce(direction * kickbackForce, ForceMode2D.Impulse);
+            rb.AddForce(direction * kickbackForce, ForceMode2D.Force);
         }
     }
 }
