@@ -16,7 +16,8 @@ MonoBehaviour:
   Description: "It loses almost all friction against the liquid. When you release
     the button, it continues to glide for a long time due to inertia, allowing you
     to attack \u2018on the roll\u2019 without constant thrust."
-  Icon: {fileID: 0}
+  Icon: {fileID: -621903541, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
+  SpawnProbabilityWeight: 10
   MaxSpeed: 1.15
   Acceleration: 1
   Deceleration: 0.3

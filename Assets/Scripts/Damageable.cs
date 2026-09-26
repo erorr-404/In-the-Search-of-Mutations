@@ -50,7 +50,7 @@ public class Damageable : MonoBehaviour
     {
         if (!canTakeDamageAndHeal) return false;
 
-        Health -= amount;
+        Health += amount;
         onHealthChanged?.Invoke(new HealthChange() {NewHealth = Health, Difference = -amount});
         
         if (Health <= 0)

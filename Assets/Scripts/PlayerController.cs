@@ -1,69 +1,110 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SpermStats))]
+[RequireComponent(typeof(Damageable))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] SpermStatsData playerStats;
-    [SerializeField] float angleOffset = 90f;
+    [SerializeField] private SpermStatsData playerStats;
+    [SerializeField] private float angleOffset = -90f;
 
-    Camera mainCamera;
-    SpermStats spermStats;
+    [Header("Ram / Dash Settings")]
+    [SerializeField] private float ramImpulse = 15f;
+    [SerializeField] private float ramCooldown = 1.0f;
 
-    Quaternion targetRotation;
-    float currentSpeed;
+    private Camera mainCamera;
+    private SpermStats spermStats;
+    private Damageable playerDamageable;
+    private Rigidbody2D rb;
 
+    private float targetAngle;
+    private bool isAccelerating;
+    private float lastRamTime = -999f;
 
-    void Awake()
+    private void Awake()
     {
         mainCamera = Camera.main;
-        targetRotation = transform.rotation;
+        rb = GetComponent<Rigidbody2D>();
+        spermStats = GetComponent<SpermStats>();
+        playerDamageable = GetComponent<Damageable>();
 
-        // default stats without any micro-implants
+        targetAngle = transform.eulerAngles.z;
+
         playerStats = new SpermStatsData
         {
-            MaxSpeed = 5f,
-            Acceleration = 8f,
-            Deceleration = 10f,
-            TurnSpeed = 1f
+            MaxSpeed = 7f,
+            Acceleration = 25f,
+            TurnSpeed = 720f
         };
     }
 
-    void Start()
+    private void Start()
     {
-        spermStats = GetComponent<SpermStats>();
         playerStats = spermStats.GetPlayerStats();
+        spermStats.onStatsChanged.AddListener(OnStatsChanged);
     }
 
-    void Update()
-    {
-        bool leftMouseButtonPressed = Input.GetMouseButton(0);
-        // bool rightMouseButtonPress = Input.GetMouseButtonDown(1); // TODO: add damageable punch
-
-        if (leftMouseButtonPressed)
-        {
-            Vector3 mouseScreenPos = Input.mousePosition;
-            mouseScreenPos.z = -mainCamera.transform.position.z;
-            Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
-            Vector2 difference = (Vector2)(mouseWorldPos - transform.position);
-
-            if (difference.sqrMagnitude < 0.01f) return;
-            float targetAngle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + angleOffset;
-            targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
-        }
-
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, playerStats.TurnSpeed * Time.deltaTime);
-
-        float targetSpeed = leftMouseButtonPressed ? playerStats.MaxSpeed : 0f;
-        float rate = leftMouseButtonPressed ? playerStats.Acceleration : playerStats.Deceleration;
-        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, rate * Time.deltaTime);
-
-        if (currentSpeed > 0.001f)
-        {
-            transform.position += transform.up * (currentSpeed * Time.deltaTime);
-        }
-    }
-
-    public void UpdatePlayerStats(SpermStatsData newStats)
+    private void OnStatsChanged(SpermStatsData newStats)
     {
         playerStats = newStats;
+        transform.localScale = new Vector3(newStats.Size, newStats.Size, newStats.Size);
+        playerDamageable.MaxHealth = newStats.Health;
+    }
+
+    private void OnDestroy()
+    {
+        if (spermStats != null)
+        {
+            spermStats.onStatsChanged.RemoveListener(OnStatsChanged);
+        }
+    }
+
+    private void Update()
+    {
+        isAccelerating = Input.GetMouseButton(0);
+
+        // 1. Зчитування цільового кута за курсором
+        Vector3 mouseScreenPos = Input.mousePosition;
+        mouseScreenPos.z = -mainCamera.transform.position.z;
+        Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
+        Vector2 difference = (Vector2)(mouseWorldPos - transform.position);
+
+        if (difference.sqrMagnitude >= 0.01f)
+        {
+            targetAngle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + angleOffset;
+        }
+
+        // 2. Ривок на ПКМ
+        if (Input.GetMouseButtonDown(1) && Time.time >= lastRamTime + ramCooldown)
+        {
+            ExecuteRam();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        // 1. Фізичний плавний поворот без тремтіння колізій
+        float newAngle = Mathf.MoveTowardsAngle(rb.rotation, targetAngle, playerStats.TurnSpeed * Time.fixedDeltaTime);
+        rb.MoveRotation(newAngle);
+
+        // 2. Рух уперед через сили
+        if (isAccelerating)
+        {
+            // Рахуємо проекцію поточної швидкості на вектор "переду"
+            float forwardSpeed = Vector2.Dot(rb.velocity, transform.up);
+
+            // Додаємо тягу, тільки якщо ще не перевищили максимальну швидкість
+            if (forwardSpeed < playerStats.MaxSpeed)
+            {
+                rb.AddForce(transform.up * (playerStats.Acceleration * rb.mass), ForceMode2D.Force);
+            }
+        }
+    }
+
+    private void ExecuteRam()
+    {
+        lastRamTime = Time.time;
+        // Миттєвий імпульс уперед, який фізично зіштовхнеться з жертвою
+        rb.AddForce(transform.up * ramImpulse, ForceMode2D.Impulse);
     }
 }

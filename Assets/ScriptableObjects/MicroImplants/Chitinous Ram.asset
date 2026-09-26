@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: Chitinous Ram
   Description: Increases frontal damage upon collision with other spermatozoa and
     reduces damage taken, but makes it harder to get up to speed.
-  Icon: {fileID: 0}
+  Icon: {fileID: 1263793537, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
+  SpawnProbabilityWeight: 10
   MaxSpeed: 0.8
   Acceleration: 0.8
   Deceleration: 1

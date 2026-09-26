@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: Cytoskeletal Framework
   Description: 'Activates Spikes: deals passive contact damage to enemies who attempt
     to attack you from behind or from the sides.'
-  Icon: {fileID: 0}
+  Icon: {fileID: -1708926282, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
+  SpawnProbabilityWeight: 10
   MaxSpeed: 0.9
   Acceleration: 0.9
   Deceleration: 0.9

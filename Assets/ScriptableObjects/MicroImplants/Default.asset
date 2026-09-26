@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: None
   Description: Just pure nature)
-  Icon: {fileID: 0}
+  Icon: {fileID: -3206519398373867357, guid: be5b0fe91300a134dbd948c73cdcfbda, type: 3}
+  SpawnProbabilityWeight: 10
   MaxSpeed: 2.5
   Acceleration: 4
   Deceleration: 10

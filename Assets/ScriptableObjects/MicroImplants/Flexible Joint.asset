@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: Flexible Joint
   Description: Allows you to turn instantly on the spot around your own axis for
     a quick counter-attack or to escape from tight corners.
-  Icon: {fileID: 0}
+  Icon: {fileID: -344015922, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
+  SpawnProbabilityWeight: 10
   MaxSpeed: 0.9
   Acceleration: 1
   Deceleration: 1

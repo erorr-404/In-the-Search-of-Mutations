@@ -1,21 +1,30 @@
-using System.Collections.Generic;
 using UnityEngine;
-
-
 
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class PickupItem : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
 
     #nullable enable
     public MutationData? mutation;
     public MicroImplantData? microImplant;
 
-    void Start()
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (microImplant != null)
+        {
+            if (!collision.gameObject.TryGetComponent<SpermStats>(out var spermStats)) return;
+            spermStats.AddMicroImplant(microImplant);
+
+            Debug.Log("Someone collected " + microImplant.Name + " micro-implant");
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>

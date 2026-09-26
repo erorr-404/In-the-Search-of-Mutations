@@ -29,11 +29,13 @@ public class SpermStats : MonoBehaviour
     [SerializeField] private List<MicroImplantData> microImplants;
 
     [SerializeField] private SpermStatsData _currentStats;
+    [SerializeField] private MicroImplantData defaultMicroImplant;
 
     public UnityEvent<SpermStatsData> onStatsChanged;
 
-    void Start()
+    void Awake()
     {
+        if (microImplants.Count == 0) microImplants.Add(defaultMicroImplant);
         UpdateStats();
     }
 
