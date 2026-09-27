@@ -5,7 +5,7 @@ public class RamAttacker : MonoBehaviour
 {
     [Tooltip("Поріг кута атаки (0.5 = конус 60 градусів перед носом)")]
     [SerializeField] private float ramAngleThreshold = 0.5f;
-    [SerializeField] private float attackCooldown = 0.4f;
+    [SerializeField] private float attackCooldown = 0.8f;
     [SerializeField] private float kickbackForce = 5f;
     [SerializeField] private bool isPlayer = false;
 
@@ -24,7 +24,18 @@ public class RamAttacker : MonoBehaviour
         TryExecuteRam(collision.gameObject);
     }
 
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        TryExecuteRam(collision.gameObject);
+    }
+
+
     void OnTriggerEnter2D(Collider2D collision)
+    {
+        TryExecuteRam(collision.gameObject);
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
     {
         TryExecuteRam(collision.gameObject);
     }

@@ -25,6 +25,14 @@ public class PickupItem : MonoBehaviour
             Debug.Log("Someone collected " + microImplant.Name + " micro-implant");
             Destroy(gameObject);
         }
+        else if (mutation != null)
+        {
+            if (!collision.gameObject.TryGetComponent<SpermStats>(out var spermStats)) return;
+            spermStats.AddMutation(mutation);
+
+            Debug.Log("Someone collected " + mutation.Name + " micro-implant");
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>

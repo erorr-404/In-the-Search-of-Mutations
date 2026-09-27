@@ -12,12 +12,12 @@ public class EnemySpawnFactory : SpawnFactory
         uiController = UIController.Instance;
     }
 
-    public override void Spawn(Vector2 position)
+    public override GameObject Spawn(Vector2 position)
     {
         if (enemyPrefab == null)
         {
             Debug.LogError("EnemyPrefab is null");
-            return;
+            return null;
         }
 
         GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
@@ -25,5 +25,6 @@ public class EnemySpawnFactory : SpawnFactory
         damageable.onDeath.AddListener(uiController.OnKill);
 
         Debug.Log("Spawned enemy at X=" + position.x.ToString() + " Y=" + position.y.ToString());
+        return enemy;
     }
 }

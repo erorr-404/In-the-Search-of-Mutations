@@ -19,11 +19,17 @@ MonoBehaviour:
   MaxSpeed: 2.5
   Acceleration: 4
   Deceleration: 10
-  TurnSpeed: 180
+  TurnSpeed: 360
   Health: 10
   Size: 1
   AttackDamage: 1
   DamageResistance: 1
+  SprintSpeedMultiplier: 3
+  SprintTurnMultiplier: 2
+  SprintAccelerationMultiplier: 2
+  MaxStamina: 5
+  StaminaConsumption: 1
+  StaminaRegenerationPerSecond: 0.5
   HealStartTime: 10
   HealCooldown: 3
   HealPerTick: 1

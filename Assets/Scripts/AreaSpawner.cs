@@ -40,12 +40,15 @@ public class AreaSpawner : MonoBehaviour
         return false;
     }
 
-    public void SpawnUsingFactory(SpawnFactory factory)
+    public GameObject SpawnUsingFactory(SpawnFactory factory)
     {
         if (factory != null && TryGetRandomPosition(out Vector2 pos))
         {
-            factory.Spawn(pos);
+            GameObject gm = factory.Spawn(pos);
+            return gm;
         }
+        
+        return null;
     }
 
     private void OnDrawGizmosSelected()

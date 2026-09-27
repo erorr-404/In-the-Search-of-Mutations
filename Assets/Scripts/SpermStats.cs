@@ -17,6 +17,14 @@ public struct SpermStatsData
     [SerializeField] public float AttackDamage;
     [SerializeField] public float DamageResistance;
 
+    [Header("Sprint and Stamina")]
+    [SerializeField] public float SprintSpeedMultiplier;
+    [SerializeField] public float SprintTurnMultiplier;
+    [SerializeField] public float SprintAccelerationMultiplier;
+    [SerializeField] public float MaxStamina;
+    [SerializeField] public float StaminaConsumption;
+    [SerializeField] public float StaminaRegenerationPerSecond;
+
     [Header("Healing")]
     [SerializeField] public float HealStartTime;
     [SerializeField] public float HealCooldown;
@@ -40,6 +48,8 @@ public class SpermStats : MonoBehaviour
     [SerializeField] private GameObject acidTank;
 
     public UnityEvent<SpermStatsData> onStatsChanged;
+    public UnityEvent<List<MutationData>> onMutationsChange;
+    public UnityEvent<List<MicroImplantData>> onMicroImplantsChange;
 
     void Awake()
     {
@@ -59,12 +69,25 @@ public class SpermStats : MonoBehaviour
     /// <param name="microImplant">The micro-implant you want to add.</param>
     public void AddMicroImplant(MicroImplantData microImplant)
     {
+        if (microImplant == null) return;
         microImplants.Add(microImplant);
 
         if (microImplant.Name == "Cytoskeletal Framework") spikes.SetActive(true);
         if (microImplant.Name == "Acid Tank") acidTank.SetActive(true);
 
         UpdateStats();
+        onMicroImplantsChange?.Invoke(microImplants);
+    }
+
+    /// <summary>
+    /// Add mutation to the list.
+    /// </summary>
+    /// <param name="mutation">Mutation to add.</param>
+    public void AddMutation(MutationData mutation)
+    {
+        if (mutation == null) return;
+        mutations.Add(mutation);
+        onMutationsChange?.Invoke(mutations);
     }
 
     /// <summary>
@@ -76,6 +99,11 @@ public class SpermStats : MonoBehaviour
         return microImplants;
     }
 
+    public List<MutationData> GetMutationsList()
+    {
+        return mutations;
+    }
+
     /// <summary>
     /// Removes micro-implant at given index.
     /// </summary>
@@ -83,12 +111,26 @@ public class SpermStats : MonoBehaviour
     /// <returns>Returns true if it was successfully removed.</returns>
     public bool RemoveMicroImplantAtIndex(int index)
     {
-        // bovdur check
+        // do not remove default implant
         if (index == 0 || index > microImplants.Count - 1) return false;
         microImplants.RemoveAt(index);
 
         UpdateStats();
+        onMicroImplantsChange?.Invoke(microImplants);
 
+        return true;
+    }
+
+    /// <summary>
+    /// Removes mutation at given position.
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    public bool RemoveMutationAtIndex(int index)
+    {
+        if (index == 0 || index > mutations.Count - 1) return false;
+        mutations.RemoveAt(index);
+        onMutationsChange?.Invoke(mutations);
         return true;
     }
 
@@ -101,8 +143,24 @@ public class SpermStats : MonoBehaviour
     {
         bool res = microImplants.Remove(microImplant);
 
-        if (res) UpdateStats();
+        if (res) 
+        {
+            UpdateStats();         
+            onMicroImplantsChange?.Invoke(microImplants);
+        }
 
+        return res;
+    }
+
+    /// <summary>
+    /// Removes specific mutation.
+    /// </summary>
+    /// <param name="mutationData"></param>
+    /// <returns></returns>
+    public bool RemoveMutation(MutationData mutationData)
+    {
+        bool res = mutations.Remove(mutationData);
+        if (res) onMutationsChange?.Invoke(mutations);
         return res;
     }
 
@@ -139,6 +197,13 @@ public class SpermStats : MonoBehaviour
         float attack_d = 1f;
         float dam_res = 1f;
 
+        float sprint_speed_mult = 1f;
+        float sprint_turn_mult = 1f;
+        float sprint_accel_mult = 1f;
+        float max_stamina = 1f;
+        float stamina_consumption = 1f;
+        float stamina_regen = 1f;
+
         float heal_start = 1f;
         float heal_cooldown = 1f;
         float heal_per_tick = 1f;
@@ -158,6 +223,13 @@ public class SpermStats : MonoBehaviour
             size *= implant.Size;
             attack_d *= implant.AttackDamage;
             dam_res *= implant.DamageResistance;
+
+            sprint_speed_mult *= implant.SprintSpeedMultiplier;
+            sprint_turn_mult *= implant.SprintTurnMultiplier;
+            sprint_accel_mult *= implant.SprintAccelerationMultiplier;
+            max_stamina *= implant.MaxStamina;
+            stamina_consumption *= implant.StaminaConsumption;
+            stamina_regen *= implant.StaminaRegenerationPerSecond;
 
             heal_start *= implant.HealStartTime;
             heal_cooldown *= implant.HealCooldown;
@@ -179,6 +251,14 @@ public class SpermStats : MonoBehaviour
             Size = size,
             AttackDamage = attack_d,
             DamageResistance = dam_res,
+
+            // Обов'язково заповнюємо ці поля:
+            SprintSpeedMultiplier = sprint_speed_mult,
+            SprintTurnMultiplier = sprint_turn_mult,
+            SprintAccelerationMultiplier = sprint_accel_mult,
+            MaxStamina = max_stamina,
+            StaminaConsumption = stamina_consumption,
+            StaminaRegenerationPerSecond = stamina_regen,
 
             HealStartTime = heal_start,
             HealCooldown = heal_cooldown,

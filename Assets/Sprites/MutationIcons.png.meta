@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a7279bbbdc2e0ea35968bf369cf523a7
+guid: 24acef3818f206c589e2564a099c1e9e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sp_0
+      name: MutationIcons_0
       rect:
         serializedVersion: 2
         x: 0
@@ -105,41 +105,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1382612d2e3d84d2181e6f3bb69ef93a
-      internalID: 857052673
+      spriteID: 8eaaaf95602e7416b8eb3f16cb53f578
+      internalID: -1325175323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98a0ba0cdb6071ba7b20befa0d27363f
-      internalID: 627251267
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sp_2
+      name: MutationIcons_1
       rect:
         serializedVersion: 2
         x: 64
@@ -147,20 +126,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 771d40b644015387f895e3f8acf43276
-      internalID: 1257338838
+      spriteID: 19963b2fee178fe4083faa65e4b92cb3
+      internalID: -1728888475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_3
+      name: MutationIcons_2
       rect:
         serializedVersion: 2
         x: 96
@@ -168,20 +147,41 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 035a1ea2817268af6afed07825dbd2af
-      internalID: 44541508
+      spriteID: 642845253eefeafd5a62f9ed3dec8a1f
+      internalID: -1469183121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_4
+      name: MutationIcons_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c48081d45dd1c67adb94c9ec5efdff1e
+      internalID: -1091961779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MutationIcons_4
       rect:
         serializedVersion: 2
         x: 128
@@ -189,20 +189,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20f42cdd54d07b61aa6a92ef09359796
-      internalID: 2100651445
+      spriteID: c3c1bb465320cccd2b239d4b60f4b17a
+      internalID: -2037739155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_5
+      name: MutationIcons_5
       rect:
         serializedVersion: 2
         x: 160
@@ -210,20 +210,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ebbc06a3475f780098b4dbb9a992981
-      internalID: -1813320616
+      spriteID: dc59399cc36beea35b11d1d5feb4a0f8
+      internalID: 1594585979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_6
+      name: MutationIcons_6
       rect:
         serializedVersion: 2
         x: 192
@@ -231,20 +231,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f2e28bde8375b9209e5bb73f96d86bb
-      internalID: -2121592693
+      spriteID: 172d3eadfb4ba701f95bd8953ce96b08
+      internalID: -1986864126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_7
+      name: MutationIcons_7
       rect:
         serializedVersion: 2
         x: 224
@@ -258,92 +258,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 276213779120a95f4a98c3812d87d15e
-      internalID: 342043941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sp_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b0d1eb1a139e4e3e9a45c2cc71601cc
-      internalID: 1478003969
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sp_9
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3346169d64aedf39d97d08b701244d43
-      internalID: -336714992
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sp_10
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 548f646e111959a91a184d7e9cb96817
-      internalID: 1466158580
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sp_11
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c61c3d0ae71d8f699819065df700d709
-      internalID: 924243080
+      spriteID: ec6c9ee56fc8589888af2ad35f08162b
+      internalID: -1800740451
       vertices: []
       indices: 
       edges: []
@@ -359,18 +275,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sp_0: 857052673
-      Sp_1: 627251267
-      Sp_10: 1466158580
-      Sp_11: 924243080
-      Sp_2: 1257338838
-      Sp_3: 44541508
-      Sp_4: 2100651445
-      Sp_5: -1813320616
-      Sp_6: -2121592693
-      Sp_7: 342043941
-      Sp_8: 1478003969
-      Sp_9: -336714992
+      MutationIcons_0: -1325175323
+      MutationIcons_1: -1728888475
+      MutationIcons_2: -1469183121
+      MutationIcons_3: -1091961779
+      MutationIcons_4: -2037739155
+      MutationIcons_5: 1594585979
+      MutationIcons_6: -1986864126
+      MutationIcons_7: -1800740451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

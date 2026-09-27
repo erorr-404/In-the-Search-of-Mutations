@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Builtin Sunglasses
+  m_EditorClassIdentifier: Assembly-CSharp::MutationData
+  Name: Builtin Sunglasses
+  Description: You were born with cool black sunglasses.
+  Icon: {fileID: 1594585979, guid: 24acef3818f206c589e2564a099c1e9e, type: 3}
+  Visuals:
+    VisualSlot: 10
+    VisualAnchor: {x: 0, y: 0}
+    Rotation: 0
+    Sprite: {fileID: 0}
+  Iq: 1
+  Attractiveness: 2
+  AbilityToReproduce: 2
+  Strength: 1
+  Hearing: 1
+  Eyesight: 1
+  Speed: 1
+  Stamina: 1
+  Power: 1
+  Immunity: 1
+  Charisma: 2
+  CanBreathUnderWater: 0
+  CanFly: 0

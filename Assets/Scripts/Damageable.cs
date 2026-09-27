@@ -78,7 +78,7 @@ public class Damageable : MonoBehaviour
     /// <summary>
     /// Heal amount per second
     /// </summary>
-    public float HealPerTick = 1f; // TODO: add micro-implant to modify this param
+    public float HealPerTick = 1f; // BUG: damageable does not use data from micro-implants for healing
 
     [Header("Hit Animation")]
     public bool playHitAnimation = true;

@@ -25,6 +25,12 @@ MonoBehaviour:
   Size: 1.1
   AttackDamage: 1
   DamageResistance: 1
+  SprintSpeedMultiplier: 1
+  SprintTurnMultiplier: 1
+  SprintAccelerationMultiplier: 1
+  MaxStamina: 1
+  StaminaConsumption: 1
+  StaminaRegenerationPerSecond: 1
   HealStartTime: 1
   HealCooldown: 1
   HealPerTick: 1

@@ -4,32 +4,33 @@ using UnityEngine;
 
 public class MicroImplantSpawnFactory : SpawnFactory
 {
-    [SerializeField] private PickupItem pickupPrefab;
+    [SerializeField] private GameObject pickupPrefab;
     [SerializeField] private List<MicroImplantData> implantPool;
 
     /// <summary>
     /// Spawns random MicroImplant at given position.
     /// </summary>
     /// <param name="position">Vector2 where to spawn.</param>
-    public override void Spawn(Vector2 position)
+    public override GameObject Spawn(Vector2 position)
     {
         if (pickupPrefab == null) 
         {
             Debug.LogError("PickupPrefab is null"); 
-            return;
+            return null;
         }
 
         MicroImplantData selected = GetWeightedRandomImplant();
         if (selected == null)
         {
             Debug.LogError("Can not select micro-implant.");
-            return;
+            return null;
         }
 
-        PickupItem pickup = Instantiate(pickupPrefab, position, Quaternion.identity);
-        pickup.SetMicroImplant(selected);
+        GameObject gm = Instantiate(pickupPrefab, position, Quaternion.identity);
+        gm.GetComponent<PickupItem>().SetMicroImplant(selected);
 
         Debug.Log("Spawning MicroImplant " + selected.Name + " at X=" + position.x.ToString() + " Y=" + position.y.ToString());
+        return gm;
     }
 
     /// <summary>
@@ -51,8 +52,8 @@ public class MicroImplantSpawnFactory : SpawnFactory
             return;
         }
 
-        PickupItem pickup = Instantiate(pickupPrefab, position, Quaternion.identity);
-        pickup.SetMicroImplant(implantData);
+        GameObject gm = Instantiate(pickupPrefab, position, Quaternion.identity);
+        gm.GetComponent<PickupItem>().SetMicroImplant(implantData);
     }
 
     private MicroImplantData GetWeightedRandomImplant()

@@ -3,5 +3,5 @@ using UnityEngine;
 
 public abstract class SpawnFactory : MonoBehaviour
 {
-    public abstract void Spawn(Vector2 position);
+    public abstract GameObject Spawn(Vector2 position);
 }

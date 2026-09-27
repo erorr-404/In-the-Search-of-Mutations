@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(SpermStats))]
 [RequireComponent(typeof(Damageable))]
@@ -8,9 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpermStatsData playerStats;
     [SerializeField] private float angleOffset = -90f;
 
-    [Header("Ram / Dash Settings")]
-    [SerializeField] private float ramImpulse = 15f;
-    [SerializeField] private float ramCooldown = 1.0f;
+    public UnityEvent<float> onStaminaChange;
 
     private Camera mainCamera;
     private SpermStats spermStats;
@@ -19,7 +18,8 @@ public class PlayerController : MonoBehaviour
 
     private float targetAngle;
     private bool isAccelerating;
-    private float lastRamTime = -999f;
+    private bool isSprinting;
+    private float currentStamina;
 
     private void Awake()
     {
@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
     {
         playerStats = spermStats.GetPlayerStats();
         spermStats.onStatsChanged.AddListener(OnStatsChanged);
+        currentStamina = playerStats.MaxStamina;
+        onStaminaChange?.Invoke(currentStamina / playerStats.MaxStamina);
     }
 
     private void OnStatsChanged(SpermStatsData newStats)
@@ -61,6 +63,26 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         isAccelerating = Input.GetMouseButton(0);
+        bool sprintInput = Input.GetMouseButton(1);
+
+        // sprint can be activated only if enough stamina available
+        isSprinting = sprintInput && currentStamina > 0.1f;
+
+        // stamina consumption
+        if (isSprinting)
+        {
+            currentStamina -= playerStats.StaminaConsumption * Time.deltaTime;
+            currentStamina = Mathf.Max(0f, currentStamina);
+        }
+
+        // stamina regeneration
+        else
+        {
+            currentStamina += playerStats.StaminaRegenerationPerSecond * Time.deltaTime;
+            currentStamina = Mathf.Min(playerStats.MaxStamina, currentStamina);
+        }
+
+        onStaminaChange?.Invoke(currentStamina / playerStats.MaxStamina);
 
         // 1. Зчитування цільового кута за курсором
         Vector3 mouseScreenPos = Input.mousePosition;
@@ -72,38 +94,32 @@ public class PlayerController : MonoBehaviour
         {
             targetAngle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + angleOffset;
         }
-
-        // 2. Ривок на ПКМ
-        if (Input.GetMouseButtonDown(1) && Time.time >= lastRamTime + ramCooldown)
-        {
-            ExecuteRam();
-        }
     }
 
     private void FixedUpdate()
     {
-        // 1. Фізичний плавний поворот без тремтіння колізій
-        float newAngle = Mathf.MoveTowardsAngle(rb.rotation, targetAngle, playerStats.TurnSpeed * Time.fixedDeltaTime);
-        rb.MoveRotation(newAngle);
+        // 1. Поворот (запобігаємо діленню на 0 або блокуванню повороту)
+        float turnMult = isSprinting ? Mathf.Max(0.1f, playerStats.SprintTurnMultiplier) : 1f;
+        float currentTurnSpeed = playerStats.TurnSpeed * turnMult;
+        
+        float newAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, currentTurnSpeed * Time.fixedDeltaTime);
+        transform.rotation = Quaternion.Euler(0f, 0f, newAngle);
 
-        // 2. Рух уперед через сили
-        if (isAccelerating)
+        // 2. Рух: якщо затиснутий ЛКМ АБО гравець спринтує на ПКМ
+        if (isAccelerating || isSprinting)
         {
-            // Рахуємо проекцію поточної швидкості на вектор "переду"
+            float speedMult = isSprinting ? Mathf.Max(1f, playerStats.SprintSpeedMultiplier) : 1f;
+            float accelMult = isSprinting ? Mathf.Max(1f, playerStats.SprintAccelerationMultiplier) : 1f;
+
+            float targetSpeed = playerStats.MaxSpeed * speedMult;
+            float targetAcceleration = playerStats.Acceleration * accelMult;
+
             float forwardSpeed = Vector2.Dot(rb.velocity, transform.up);
 
-            // Додаємо тягу, тільки якщо ще не перевищили максимальну швидкість
-            if (forwardSpeed < playerStats.MaxSpeed)
+            if (forwardSpeed < targetSpeed)
             {
-                rb.AddForce(transform.up * (playerStats.Acceleration * rb.mass), ForceMode2D.Force);
+                rb.AddForce(transform.up * (targetAcceleration * rb.mass), ForceMode2D.Force);
             }
         }
-    }
-
-    private void ExecuteRam()
-    {
-        lastRamTime = Time.time;
-        // Миттєвий імпульс уперед, який фізично зіштовхнеться з жертвою
-        rb.AddForce(transform.up * ramImpulse, ForceMode2D.Impulse);
     }
 }

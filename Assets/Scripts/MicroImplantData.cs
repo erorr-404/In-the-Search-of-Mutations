@@ -23,6 +23,15 @@ public class MicroImplantData : ScriptableObject
     public float AttackDamage = 1f;
     public float DamageResistance = 1f;
 
+    [Header("Sprint and Stamina")]
+    [SerializeField] public float SprintSpeedMultiplier;
+    [SerializeField] public float SprintTurnMultiplier;
+    [SerializeField] public float SprintAccelerationMultiplier;
+    [SerializeField] public float MaxStamina;
+    [SerializeField] public float StaminaConsumption;
+    [SerializeField] public float StaminaRegenerationPerSecond;
+
+
     [Header("Healing")]
     public float HealStartTime;
     public float HealCooldown;
