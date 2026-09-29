@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Acid Tank
   Description: "Leaves a greenish trail of acid droplets in its wake for 2\u20133
     seconds."
-  Icon: {fileID: -1229467667, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
+  Icon: {fileID: -688085508, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
   SpawnProbabilityWeight: 10
   MaxSpeed: 0.9
   Acceleration: 0.9

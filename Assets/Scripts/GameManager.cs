@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] AreaSpawner areaSpawner;
     [SerializeField] List<GameObject> enemiesList;
 
+    public UnityEvent OnBattleStart;
     public UnityEvent OnPlayerWin;
+    public UnityEvent OnPlayerLose;
     public bool EnemiesSpawned = false;
 
     void Awake()
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
         SpawnMicroImplants();
         SpawnMutations();
         SpawnEnemies();
+
+        OnBattleStart?.Invoke();
     }
 
     void Update()
@@ -43,6 +47,11 @@ public class GameManager : MonoBehaviour
 
         // player wins if all enemies dead
         if (EnemiesSpawned && validEnemies == 0) OnPlayerWin?.Invoke();
+    }
+
+    public void OnPlayerDead()
+    {
+        OnPlayerLose?.Invoke();
     }
 
     void SpawnEnemies()

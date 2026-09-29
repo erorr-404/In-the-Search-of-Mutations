@@ -107,7 +107,7 @@ public class RamAttacker : MonoBehaviour
     {
         if (target.TryGetComponent<Rigidbody2D>(out var rb))
         {
-            rb.AddForce(direction * kickbackForce, ForceMode2D.Force);
+            rb.AddForce(direction * kickbackForce, ForceMode2D.Impulse);
         }
     }
 }

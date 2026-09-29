@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Turbo Flagellum
   Description: The sperm makes a sudden lurch forwards and reaches high speed, but
     due to its strong inertia, it becomes less manoeuvrable when turning.
-  Icon: {fileID: 1870884487, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
+  Icon: {fileID: -425290230, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
   SpawnProbabilityWeight: 10
   MaxSpeed: 1.25
   Acceleration: 1.6

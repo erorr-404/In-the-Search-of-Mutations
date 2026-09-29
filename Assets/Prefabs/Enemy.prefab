@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7302360702717226082}
   - component: {fileID: 4207635060689299543}
   - component: {fileID: 7571240381751387743}
+  - component: {fileID: -6413447368818092817}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -219,6 +220,7 @@ MonoBehaviour:
   defaultMicroImplant: {fileID: 11400000, guid: 0d6f839ea2a225f91a8268dacf1032ae, type: 2}
   spikes: {fileID: 5225376608160806868}
   acidTank: {fileID: 5457325653245586383}
+  rgbAnimation: {fileID: -6413447368818092817}
   onStatsChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -520,6 +522,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0.04, y: 0}
   m_Size: {x: 0.16, y: 1}
   m_Direction: 0
+--- !u!114 &-6413447368818092817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152163990961230863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895c081cd34fefe1bbe4f1d794bb1941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5
+  Active: 0
 --- !u!1 &5225376608160806868
 GameObject:
   m_ObjectHideFlags: 0

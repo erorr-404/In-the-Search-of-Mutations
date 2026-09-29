@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5730bd4ddb27a17358c6fc0d5796044a, type: 3}
+  m_Name: RGB
+  m_EditorClassIdentifier: 
+  Name: Red Green Blue
+  Description: 'Red, Green and Blue Light Emmiting Diodes. Makes it cool.
+
+'
+  Icon: {fileID: -1229467667, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
+  SpawnProbabilityWeight: 5
+  MaxSpeed: 1
+  Acceleration: 1
+  Deceleration: 1
+  TurnSpeed: 1
+  Health: 1
+  Size: 1
+  AttackDamage: 1
+  DamageResistance: 1
+  SprintSpeedMultiplier: 0
+  SprintTurnMultiplier: 0
+  SprintAccelerationMultiplier: 0
+  MaxStamina: 0
+  StaminaConsumption: 0
+  StaminaRegenerationPerSecond: 0
+  HealStartTime: 0
+  HealCooldown: 0
+  HealPerTick: 0
+  Spikes: 0
+  ToxicTrail: 0
+  RGBLight: 1
+  Gun: 0

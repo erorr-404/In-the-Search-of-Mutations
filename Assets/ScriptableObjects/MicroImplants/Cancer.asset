@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Stage IV cancer
   Description: Will speedup your healing.
-  Icon: {fileID: -2119689816, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
+  Icon: {fileID: -1897155175, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
   SpawnProbabilityWeight: 10
   MaxSpeed: 1
   Acceleration: 1

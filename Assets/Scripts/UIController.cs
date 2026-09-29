@@ -69,12 +69,26 @@ public class UIController : MonoBehaviour
         foreach (GameObject item in displayedImplants) if (item != null) Destroy(item);
         displayedImplants.Clear();
 
-        // create new
+        Dictionary<MicroImplantData, int> implantsCounts = new() {};
+
         foreach (MicroImplantData implant in microImplants)
+        {
+            if (implantsCounts.TryGetValue(implant, out var implantCount))
+            {
+                implantsCounts[implant] = implantCount + 1;
+            }
+            else
+            {
+                implantsCounts.Add(implant, 1);
+            }
+        }
+
+        // create new
+        foreach (MicroImplantData implant in implantsCounts.Keys)
         {
             if (implant.Name == "None") continue;
             GameObject implantListItem = Instantiate(ListItemPrefab, ImplantsList.transform);
-            implantListItem.GetComponent<UIListItem>().Set(implant.Icon, implant.Name);
+            implantListItem.GetComponent<UIListItem>().Set(implant.Icon, implantsCounts[implant] + "x " + implant.Name);
             displayedImplants.Add(implantListItem);
         }
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Membrane Shock Absorber
   Description: Absorbs the impact of enemy blows, preventing them from knocking you
     back too far during ramming attacks.
-  Icon: {fileID: -1535319118, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
+  Icon: {fileID: -638264382, guid: 7c0fb397ddf5630a9b2deea1dd63b90b, type: 3}
   SpawnProbabilityWeight: 10
   MaxSpeed: 1
   Acceleration: 1

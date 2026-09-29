@@ -36,6 +36,7 @@ public struct SpermStatsData
     [SerializeField] public bool HasGun;
 }
 
+[RequireComponent(typeof(RGBAnimation))]
 public class SpermStats : MonoBehaviour
 {
     [SerializeField] private List<MutationData> mutations;
@@ -46,6 +47,7 @@ public class SpermStats : MonoBehaviour
 
     [SerializeField] private GameObject spikes;
     [SerializeField] private GameObject acidTank;
+    [SerializeField] private RGBAnimation rgbAnimation;
 
     public UnityEvent<SpermStatsData> onStatsChanged;
     public UnityEvent<List<MutationData>> onMutationsChange;
@@ -59,8 +61,11 @@ public class SpermStats : MonoBehaviour
 
     void Start()
     {
+        rgbAnimation = GetComponent<RGBAnimation>();
+
         spikes.SetActive(false);
         acidTank.SetActive(false);
+        rgbAnimation.Active = false;
     }
 
     /// <summary>
@@ -71,9 +76,6 @@ public class SpermStats : MonoBehaviour
     {
         if (microImplant == null) return;
         microImplants.Add(microImplant);
-
-        if (microImplant.Name == "Cytoskeletal Framework") spikes.SetActive(true);
-        if (microImplant.Name == "Acid Tank") acidTank.SetActive(true);
 
         UpdateStats();
         onMicroImplantsChange?.Invoke(microImplants);
@@ -177,6 +179,9 @@ public class SpermStats : MonoBehaviour
         SpermStatsData stats = RecalculateMicroImplantEffects();
         _currentStats = stats;
 
+        spikes.SetActive(stats.HasSpikes);
+        acidTank.SetActive(stats.HasToxicTrail);
+        rgbAnimation.Active = stats.HasRGB;
         transform.localScale = new Vector3(stats.Size, stats.Size, stats.Size);
 
         onStatsChanged?.Invoke(stats);
