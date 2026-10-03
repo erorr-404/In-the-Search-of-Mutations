@@ -26,15 +26,15 @@ MonoBehaviour:
   Size: 1
   AttackDamage: 1
   DamageResistance: 1
-  SprintSpeedMultiplier: 0
-  SprintTurnMultiplier: 0
-  SprintAccelerationMultiplier: 0
-  MaxStamina: 0
-  StaminaConsumption: 0
-  StaminaRegenerationPerSecond: 0
-  HealStartTime: 0
-  HealCooldown: 0
-  HealPerTick: 0
+  SprintSpeedMultiplier: 1
+  SprintTurnMultiplier: 1
+  SprintAccelerationMultiplier: 1
+  MaxStamina: 1
+  StaminaConsumption: 1
+  StaminaRegenerationPerSecond: 1
+  HealStartTime: 1
+  HealCooldown: 1
+  HealPerTick: 1
   Spikes: 0
   ToxicTrail: 0
   RGBLight: 1

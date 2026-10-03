@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 4207635060689299543}
   - component: {fileID: 7571240381751387743}
   - component: {fileID: -6413447368818092817}
+  - component: {fileID: -2878111334778246589}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -536,6 +537,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   Active: 0
+--- !u!114 &-2878111334778246589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152163990961230863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f65143cf1e116a5956198385aa54dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toxicPuddlePrefab: {fileID: 3780439925316747345, guid: 6f3ae19c1b893bcc1b2ef590e9d603f1, type: 3}
+  spawnInterval: 0.05
+  damageMultiplier: 0.3
 --- !u!1 &5225376608160806868
 GameObject:
   m_ObjectHideFlags: 0

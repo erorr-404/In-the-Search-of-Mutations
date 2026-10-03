@@ -45,7 +45,7 @@ public class MusicManager : MonoBehaviour
         audioSource.Play();
         index++;
 
-        Debug.Log("Now playing " + audioSource.clip.name);
+        Debug.Log("Now playing " + audioClips[index - 1]);
     }
 
     void Shuffle(List<AudioClip> list)

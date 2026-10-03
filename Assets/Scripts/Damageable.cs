@@ -17,6 +17,7 @@ public enum HealthModificationReason
     Heal,
     PlayerAttack,
     EnemyAttack,
+    ToxicPuddle,
     Spawn
 }
 

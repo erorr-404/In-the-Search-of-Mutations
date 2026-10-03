@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private float targetAngle;
     private bool isAccelerating;
-    private bool isSprinting;
+    public bool isSprinting {get; private set ;}
     private float currentStamina;
 
     private void Awake()
@@ -43,7 +43,9 @@ public class PlayerController : MonoBehaviour
         playerStats = spermStats.GetPlayerStats();
         spermStats.onStatsChanged.AddListener(OnStatsChanged);
         currentStamina = playerStats.MaxStamina;
-        onStaminaChange?.Invoke(currentStamina / playerStats.MaxStamina);
+
+        float staminaPercentFill = playerStats.MaxStamina == 0 ? 0 : currentStamina / playerStats.MaxStamina;
+        onStaminaChange?.Invoke(staminaPercentFill);
     }
 
     private void OnStatsChanged(SpermStatsData newStats)
@@ -66,10 +68,10 @@ public class PlayerController : MonoBehaviour
         bool sprintInput = Input.GetMouseButton(1);
 
         // sprint can be activated only if enough stamina available
-        isSprinting = sprintInput && currentStamina > 0.1f;
+        isSprinting = sprintInput && currentStamina > 0;
 
         // stamina consumption
-        if (isSprinting)
+        if (sprintInput)
         {
             currentStamina -= playerStats.StaminaConsumption * Time.deltaTime;
             currentStamina = Mathf.Max(0f, currentStamina);
@@ -82,7 +84,8 @@ public class PlayerController : MonoBehaviour
             currentStamina = Mathf.Min(playerStats.MaxStamina, currentStamina);
         }
 
-        onStaminaChange?.Invoke(currentStamina / playerStats.MaxStamina);
+        float staminaPercentFill = playerStats.MaxStamina == 0 ? 0 : currentStamina / playerStats.MaxStamina;
+        onStaminaChange?.Invoke(staminaPercentFill);
 
         // 1. Зчитування цільового кута за курсором
         Vector3 mouseScreenPos = Input.mousePosition;

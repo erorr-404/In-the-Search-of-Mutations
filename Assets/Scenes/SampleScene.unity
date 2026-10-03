@@ -933,6 +933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 539339790}
   - component: {fileID: 539339791}
+  - component: {fileID: 539339792}
   m_Layer: 8
   m_Name: Acid Tank
   m_TagString: Untagged
@@ -1007,6 +1008,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &539339792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539339789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f65143cf1e116a5956198385aa54dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toxicPuddlePrefab: {fileID: 3780439925316747345, guid: 6f3ae19c1b893bcc1b2ef590e9d603f1, type: 3}
+  spawnInterval: 0.05
+  damageMultiplier: 0.3
 --- !u!1 &553413247
 GameObject:
   m_ObjectHideFlags: 0
@@ -37132,9 +37148,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6abb128fc7c80c85596852f6cb4ed3a5, type: 3}
   - {fileID: 8300000, guid: 595689f1b011d81358ff15800a4c9f57, type: 3}
   - {fileID: 8300000, guid: 27b7f8417f985676aa8dbb4f76b7d5a3, type: 3}
-  - {fileID: 8300000, guid: 743b199a73aedc0fcbe87e774e8908cc, type: 3}
   - {fileID: 8300000, guid: 3444d2bbd0a10bbc9845cf4279776161, type: 3}
-  - {fileID: 8300000, guid: 0808a0961244a1cf2bd980d70cfeba22, type: 3}
   ChoseRandom: 1
   <Play>k__BackingField: 0
 --- !u!82 &1457961961

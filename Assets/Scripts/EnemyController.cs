@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float angleOffset = -90f;
 
     [SerializeField] private AIState currentState = AIState.Wander;
+    public bool isSprinting {get; private set;}
 
     private SpermStats spermStats;
     private Damageable damageable;
@@ -204,7 +205,8 @@ public class EnemyController : MonoBehaviour
         float targetTurn = stats.TurnSpeed;
 
         // Використовуємо твої множники СПРИНТУ, коли бот іде на вбивство або тікає!
-        if (currentState == AIState.Attack || currentState == AIState.Flee)
+        isSprinting = currentState == AIState.Attack || currentState == AIState.Flee;
+        if (isSprinting)
         {
             targetMaxSpeed *= Mathf.Max(1f, stats.SprintSpeedMultiplier);
             targetAccel *= Mathf.Max(1f, stats.SprintAccelerationMultiplier);
