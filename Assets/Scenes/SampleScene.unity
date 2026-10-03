@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toxicPuddlePrefab: {fileID: 3780439925316747345, guid: 6f3ae19c1b893bcc1b2ef590e9d603f1, type: 3}
   spawnInterval: 0.05
-  damageMultiplier: 0.3
+  damageMultiplier: 0.2
 --- !u!1 &553413247
 GameObject:
   m_ObjectHideFlags: 0
